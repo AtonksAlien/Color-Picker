@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="it" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>COLORE PICKATORE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <style media="screen">
+
+      *{
+        margin: 0;
+      }
+
+      /*ANIMAZIONE*/
+        @-webkit-keyframes shake-horizontal {
+          0%,
+          100% {
+            -webkit-transform: translateX(0);
+            transform: translateX(0);
+          }
+          10%,
+          30%,
+          50%,
+          70% {
+            -webkit-transform: translateX(-10px);
+            transform: translateX(-10px);
+          }
+          20%,
+          40%,
+          60% {
+            -webkit-transform: translateX(10px);
+            transform: translateX(10px);
+          }
+          80% {
+            -webkit-transform: translateX(8px);
+            transform: translateX(8px);
+          }
+          90% {
+            -webkit-transform: translateX(-8px);
+            transform: translateX(-8px);
+          }
+        }
+        @keyframes shake-horizontal {
+          0%,
+          100% {
+            -webkit-transform: translateX(0);
+            transform: translateX(0);
+          }
+          10%,
+          30%,
+          50%,
+          70% {
+            -webkit-transform: translateX(-10px);
+            transform: translateX(-10px);
+          }
+          20%,
+          40%,
+          60% {
+            -webkit-transform: translateX(10px);
+            transform: translateX(10px);
+          }
+          80% {
+            -webkit-transform: translateX(8px);
+            transform: translateX(8px);
+          }
+          90% {
+            -webkit-transform: translateX(-8px);
+            transform: translateX(-8px);
+          }
+        }
+
+        .shake-horizontal {
+           -webkit-animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+            animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+          }
+
+        /*CSS*/
+      .sfondo{
+        background-color: #FE0202;
+        height: 100vh;
+        width: 100%;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+      }
+
+      .title{
+        font-size: 78px;
+        font-family: 'Russo One';
+        letter-spacing: 0.03em;
+        text-align: center;
+        font-style: normal;
+        font-weight: normal;
+        line-height: 0.5;
+        color: #FFF;
+        padding-bottom: 4.5%;
+      }
+
+      .titolino{
+        font-family: 'Russo One';
+        font-style: normal;
+        font-weight: normal;
+        font-size: 22px;
+        line-height: 27px;
+        text-align: center;
+        letter-spacing: 0.03em;
+        color: #FFF;
+      }
+
+      .colors{
+        display: flex;
+        justify-content: space-around;
+        padding-top: 5%;
+        padding-bottom: 5%;
+      }
+
+      .bord{
+        border: 1px solid #000;
+        border-radius: 10px;
+        background-color: #FFF;
+        width: 60px;
+        height: 60px;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .bord:hover{
+        border: 5px solid #000;
+        box-sizing: border-box;
+      }
+
+      .bord div{
+        width: 90%;
+        height: 90%;
+        border-radius: 10px;
+      }
+
+      form{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 5%;
+        margin-left: 5%;
+      }
+
+      form input{
+        background: #FFF;
+        border: 1px solid #000;
+        box-sizing: border-box;
+        border-radius: 5px;
+        flex-grow: 1;
+        margin-right: 2%;
+        height: 50px;
+        font-family: 'Russo One';
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 22px;
+        letter-spacing: 0.03em;
+        text-align: center;
+      }
+
+      form input::placeholder{
+        font-family: 'Russo One';
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 22px;
+        letter-spacing: 0.03em;
+        color: #C1C1C1;
+        text-align: center;
+      }
+
+      form button{
+        font-family: 'Russo One';
+        width: 20%;
+        height: 50px;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 22px;
+        letter-spacing: 0.03em;
+        color: #000;
+        background: #8BFFC7;
+        border-radius: 5px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="sfondo">
+      <div class="block">
+        <h1 class="title">
+          PICK A COLOR
+        </h1>
+        <h3 class="titolino">
+          Scegli un colore per cambiare lo sfondo della pagina
+        </h3>
+        <div class="colors">
+        </div>
+        <form>
+          <input type="text" name="hexa" placeholder="o inserisci un codice esadecimale">
+          <button class="submit" type="submit">cambia</button>
+        </form>
+      </div>
+
+    </div>
+
+
+    <script type="text/javascript">
+
+      let form = document.querySelector("form")
+      let sfondo = document.querySelector(".sfondo")
+      let colors = ["#FE0202", "#59BC98", "#2594D2", "#72BC59", "#BC59A0", "#DCF63C"]
+      let bottoni = document.querySelector(".colors")
+      for (let i=0; i < colors.length; i++) {
+        let button = document.createElement("a")
+        button.classList.add("bord")
+        let colore = document.createElement("div")
+        colore.style.backgroundColor = colors[i]
+        button.appendChild(colore)
+        bottoni.appendChild(button)
+      }
+
+      let btns = document.querySelectorAll(".bord")
+
+      function showError(){
+        let block = document.querySelector(".block")
+        block.classList.add("shake-horizontal")
+        setTimeout(function(){
+          block.classList.remove("shake-horizontal")
+        }, 800)
+      }
+
+      function customColor(colore) {
+        let title = document.querySelector(".title")
+        let titolino = document.querySelector(".titolino")
+        colore = colore.toLowerCase();
+        if (colore[0] != '#') {
+          colore = '#' + colore
+        }
+
+        if (colore.length == 4 || colore.length == 7) {
+          let valid = true
+          let i = 1
+            while (valid && i < colore.length) {
+              let char = ["a", "b", "c", "d", "e", "f"];
+              if (isNaN(colore[i]) && !char.includes(colore[i])) {
+                valid = false
+              }
+              i++
+            }
+        console.log(valid)
+        if (valid == true){
+          sfondo.style.backgroundColor = colore
+        }
+        if (colore == '#fff' || colore == '#ffffff') {
+          title.style.color = '#000'
+          titolino.style.color = '#000'
+        } else {
+          title.style.color = '#fff'
+          titolino.style.color = '#fff'
+        }
+        return valid
+      } else{
+        return false
+      }
+      return false
+    }
+
+    for (let i = 0; i < btns.length; i++) {
+      btns[i].addEventListener('click', function(e){
+        e.preventDefault()
+        customColor(colors[i])
+        document.querySelector('input').value = ""
+      })
+    }
+
+
+      form.addEventListener('submit', function(e){
+        e.preventDefault()
+        let colore = document.querySelector('input').value
+        if (customColor(colore) == false) {
+          showError()
+        }
+      })
+
+    </script>
+  </body>
+</html>
